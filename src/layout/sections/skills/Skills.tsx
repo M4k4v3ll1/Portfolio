@@ -1,41 +1,58 @@
 import React from 'react';
-import styled from "styled-components";
 import {FlexWrapper} from "../../../components/FlexWrapper";
-import {Icon} from "../../../components/icon/Icon";
 import {SectionTitle} from "../../../components/SectionTitle";
 import {Skill} from "./skill/Skill";
+import {Container} from "../../../components/Container";
+import {S} from './Skills_Styles'
 
-type SkillPropsType = {}
+const skillData = [
+    {
+        iconId: 'code',
+        title: 'html5',
+        decription: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua Ut enim'
+    },
+    {
+        iconId: 'css',
+        title: 'css3',
+        decription: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua Ut enim'
+    },
+    {
+        iconId: 'react',
+        title: 'React',
+        decription: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua Ut enim'
+    },
+    {
+        iconId: 'typeScript',
+        title: 'typeScript',
+        decription: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua Ut enim'
+    },
+    {
+        iconId: 'styledComponents',
+        title: 'styled components',
+        decription: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua Ut enim'
+    },
+    {
+        iconId: 'figma',
+        title: 'WEB DESIgN',
+        decription: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua Ut enim'
+    },
+]
 
 export const Skills = () => {
     return (
-        <StyledSkill>
-            <SectionTitle>My Skills</SectionTitle>
-            <FlexWrapper wrap={'wrap'} justify={'space-between'}>
-                <Skill iconId={'code'}
-                       title={'html5'}
-                       decription={'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua Ut enim'}/>
-                <Skill iconId={'css'}
-                       title={'css3'}
-                       decription={'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua Ut enim'}/>
-                <Skill iconId={'react'}
-                       title={'React'}
-                       decription={'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua Ut enim'}/>
-                <Skill iconId={'typeScript'}
-                       title={'typescript'}
-                       decription={'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua Ut enim'}/>
-                <Skill iconId={'styledComponents'}
-                       title={'styled components'}
-                       decription={'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua Ut enim'}/>
-                <Skill iconId={'figma'}
-                       title={'WEB DESIgN'}
-                       decription={'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua Ut enim'}/>
-            </FlexWrapper>
-        </StyledSkill>
+        <S.Skills>
+            <Container>
+                <SectionTitle>My Skills</SectionTitle>
+                <FlexWrapper wrap={'wrap'} justify={'space-between'}>
+                    {skillData.map((s, index) => {
+                        return (
+                            <Skill iconId={s.iconId} key={index}
+                                   title={s.title}
+                                   decription={s.decription}/>
+                        )
+                    })}
+                </FlexWrapper>
+            </Container>
+        </S.Skills>
     );
 };
-
-const StyledSkill = styled.div<SkillPropsType>`
-  background-color: #ffe5e4;
-  min-height: 100vh;
-`

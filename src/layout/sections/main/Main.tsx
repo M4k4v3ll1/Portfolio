@@ -1,37 +1,38 @@
 import React from 'react';
 import photo from '../../../../src/assets/images/photo.webp'
-import styled from "styled-components";
 import {FlexWrapper} from "../../../components/FlexWrapper";
+import {Container} from "../../../components/Container";
+import {S} from './Main_Styles'
+import Typewriter from 'typewriter-effect';
+import Tilt from 'react-parallax-tilt';
 
-export const Main = () => {
+export const Main: React.FC = () => {
     return (
-        <StyledMain>
-            <FlexWrapper align={'center'} justify={'space-around'}>
-                <div>
-                    <span>Hi There</span>
-                    <Name>I am Trandin Ivan</Name>
-                    <MainTitle>A Frontend Developer</MainTitle>
-                </div>
-                <Photo src={photo} alt='Фото Ивана'/>
-            </FlexWrapper>
-        </StyledMain>
+        <S.Main>
+            <Container>
+                <FlexWrapper align={'center'} justify={'space-around'} wrap={'wrap'}>
+                    <div>
+                        <S.SmallText>Hi There</S.SmallText>
+                        <S.Name>I am <span>Trandin Ivan</span></S.Name>
+                        <S.MainTitle>
+                            <p>A Frontend Developer.</p>
+                            <Typewriter
+                                options={{
+                                    strings: ['A Web Developer.', 'A Frontend Developer.', 'A Web Designer.'],
+                                    autoStart: true,
+                                    loop: true,
+                                    delay: 50
+                                }}
+                            />
+                        </S.MainTitle>
+                    </div>
+                    <Tilt tiltReverse={true}>
+                        <S.PhotoWrapper>
+                            <S.Photo src={photo} alt='Фото Ивана'/>
+                        </S.PhotoWrapper>
+                    </Tilt>
+                </FlexWrapper>
+            </Container>
+        </S.Main>
     );
 };
-
-const StyledMain = styled.div`
-min-height: 100vh;
-  background-color: #fff5e7;
-`
-
-const Photo = styled.img`
-  width: 350px;
-  height: 430px;
-  object-fit: cover;
-`
-
-const MainTitle = styled.h1`
-
-`
-
-const Name = styled.h1`
-`

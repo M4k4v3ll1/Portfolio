@@ -1,59 +1,41 @@
 import React from 'react';
-import styled from "styled-components";
 import {Icon} from "../../components/icon/Icon";
 import {FlexWrapper} from "../../components/FlexWrapper";
+import {S} from './Footer_Styles'
 
-export const Footer = () => {
+const socialItemData = [
+    {
+        iconId: 'insta'
+    },
+    {
+        iconId: 'telegram'
+    },
+    {
+        iconId: 'vk'
+    },
+    {
+        iconId: 'linkedin'
+    },
+]
+
+export const Footer: React.FC = () => {
     return (
-        <StyledFooter>
+        <S.Footer>
             <FlexWrapper direction={'column'} align={'center'}>
-                <Name>Ivan</Name>
-                <SocialList>
-                    <SocialItem>
-                        <SocialLink>
-                            <Icon height={'21px'} viewBox={'0 0 21px 21px'} iconId={'insta'}/>
-                        </SocialLink>
-                    </SocialItem>
-                    <SocialItem>
-                        <SocialLink>
-                            <Icon height={'21px'} viewBox={'0 0 21px 21px'} iconId={'telegram'}/>
-                        </SocialLink>
-                    </SocialItem>
-                    <SocialItem>
-                        <SocialLink>
-                            <Icon height={'21px'} viewBox={'0 0 21px 21px'} iconId={'vk'}/>
-                        </SocialLink>
-                    </SocialItem>
-                    <SocialItem>
-                        <SocialLink>
-                            <Icon height={'21px'} viewBox={'0 0 21px 21px'} iconId={'linkedin'}/>
-                        </SocialLink>
-                    </SocialItem>
-                </SocialList>
-                <Copyright>© 2023 Ivan Trandin, All Rights Reserved.</Copyright>
+                <S.Name>Ivan</S.Name>
+                <S.SocialList>
+                    {socialItemData.map((s, index) => {
+                        return (
+                            <S.SocialItem key={index}>
+                                <S.SocialLink>
+                                    <Icon height={'21px'} width={'21px'} viewBox={'0 0 21px 21px'} iconId={s.iconId}/>
+                                </S.SocialLink>
+                            </S.SocialItem>
+                        )
+                    })}
+                </S.SocialList>
+                <S.Copyright>© 2023 Ivan Trandin, All Rights Reserved.</S.Copyright>
             </FlexWrapper>
-        </StyledFooter>
+        </S.Footer>
     );
 };
-
-const StyledFooter = styled.footer`
-  background-color: #ffd8a5;
-  min-height: 20vh;
-`
-const Name = styled.span`
-
-`
-const SocialList = styled.ul`
-  display: flex;
-  gap: 30px;
-`
-const SocialItem = styled.li`
-  list-style: none;
-`
-
-const SocialLink = styled.a`
-
-`
-const Copyright = styled.small`
-
-`
