@@ -3,6 +3,7 @@ import {theme} from "../../styles/Theme";
 import {font} from "../../styles/Common";
 
 const Footer = styled.footer`
+  position: relative;
   background-color: ${theme.colors.primaryBg};
   padding: 40px 0;
 `
@@ -28,7 +29,7 @@ const SocialLink = styled.a`
   display: flex;
   justify-content: center;
   align-items: center;
-
+  transition: ${theme.animation.transition};
   color: ${theme.colors.accent};
 
   &:hover {

@@ -1,14 +1,12 @@
 import styled, {css} from "styled-components";
 import {theme} from "../../../styles/Theme";
+import {Link} from "react-scroll";
 
 //Menu
-const Link = styled.a`
-  text-align: center;
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: 30px;
-  font-weight: 400;
-  color: transparent;
+const MenuItem = styled.li`
+  position: relative;
 `
+
 const Mask = styled.span`
   position: absolute;
   top: 0;
@@ -16,8 +14,8 @@ const Mask = styled.span`
   display: inline-block;
   height: 50%;
   overflow-y: hidden;
-  /*outline: 1px solid red;*/
   color: ${theme.colors.accent};
+  transition: ${theme.animation.transition};
 
   & + & {
     top: 50%;
@@ -28,8 +26,13 @@ const Mask = styled.span`
     }
   }
 `
-const MenuItem = styled.li`
-  position: relative;
+
+const NavLink = styled(Link)`
+  text-align: center;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 30px;
+  font-weight: 400;
+  color: transparent;
 
   &::before {
     content: '';
@@ -44,9 +47,10 @@ const MenuItem = styled.li`
     z-index: 1;
 
     transform: scale(0);
+    transition: ${theme.animation.transition};
   }
 
-  &:hover {
+  &.active {
     &::before {
       transform: scale(1);
     }
@@ -74,25 +78,32 @@ const MobileMenuPopup = styled.div<{ isOpen: boolean }>`
 
   background-color: rgba(31, 31, 32, 0.90);
 
-  display: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: translateY(-100%);
+  transition: 0.5s ease-in-out;
 
-  ${props => props.isOpen && css<{ isOpen: boolean }>`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  `}
   ul {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 30px;
+    gap: 10px;
     justify-content: center;
+    transition: 0.2s ease-in-out;
   }
+  
+  ${props => props.isOpen && css<{ isOpen: boolean }>`
+    transform: translateY(0);
+    
+    & ul {
+      gap: 30px;
+    }
+  `}
 `
 const BurgerButton = styled.button<{ isOpen: boolean }>`
   position: fixed;
-  /*top: -100px;*/
-  right: -60px;
+  right: -90px;
   width: 200px;
   height: 50px;
   z-index: 999999;
@@ -150,7 +161,7 @@ const DesktopMenu = styled.nav`
 `
 
 export const S = {
-    Link,
+    NavLink,
     Mask,
     MenuItem,
     MobileMenu,

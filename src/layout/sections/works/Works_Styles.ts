@@ -3,17 +3,19 @@ import {theme} from "../../../styles/Theme";
 import {Link} from "../../../components/Link";
 import {Button} from "../../../components/Button";
 import {FlexWrapper} from "../../../components/FlexWrapper";
+import {motion} from "framer-motion";
 
 const Works = styled.section`
+  position: relative;
   ${FlexWrapper} {
     gap: 30px;
   }
 `
-const Work = styled.div`
+const Work = styled(motion.div)`
   background-color: ${theme.colors.secondaryBg};
   
-  width: 330px;
-  flex-grow: 1;
+  /*width: 330px;
+  flex-grow: 1;*/
 
   ${Link} {
     padding: 10px 0;
@@ -23,9 +25,9 @@ const Work = styled.div`
     }
   }
   
-  @media ${theme.media.desktop} {
+ /* @media ${theme.media.desktop} {
     max-width: 540px;
-  }
+  }*/
 `
 const ImageWrapper = styled.div`
   position: relative;
@@ -35,7 +37,8 @@ const ImageWrapper = styled.div`
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -40%);
+    transition: ${theme.animation.transition};
 
     &::before {
       width: 100%;
@@ -52,8 +55,9 @@ const ImageWrapper = styled.div`
     top: 0;
     bottom: 0;
     background: rgba(0, 0, 0, 0.30);
-    backdrop-filter: blur(4px);
+    backdrop-filter: blur(2px);
     opacity: 0;
+    transition: ${theme.animation.transition};
   }
 
   &:hover {
@@ -63,6 +67,7 @@ const ImageWrapper = styled.div`
 
     ${Button} {
       opacity: 1;
+      transform: translate(-50%, -50%);
     }
   }
   
